@@ -24,55 +24,42 @@ int sender_delay = 40;   // Respiro entre pulsaciones
 int end_delay = 2000;    // Respiro final al enviar la instrucción
 
 // =========
-// FUNCIÓN GENERAL
-// =========
-// Enviamos una señal, con determinada duración en ms
-void send_ChuwiCommand(int duration, unsigned int *code_to_send, int code_size){
-  unsigned long actual_time = millis();
-  while ((millis() - actual_time) < duration) {
-    irsend.sendRaw(code_to_send, code_size, khz);
-    delay(sender_delay);
-  }
-  delay(end_delay);
-}
-
-// =========
 // FUNCIONES DE CADA BOTÓN
 // =========
 void chuwi_clean(int duration){
-  send_ChuwiCommand(duration, code_clean, sizeof(code_clean) / sizeof(code_clean[0]));
+  send_raw_command(duration, code_clean, sizeof(code_clean) / sizeof(code_clean[0]));
 }
 
 void chuwi_home(int duration){
-  send_ChuwiCommand(duration, code_home, sizeof(code_home) / sizeof(code_home[0]));
+  send_raw_command(duration, code_home, sizeof(code_home) / sizeof(code_home[0]));
 }
 
 void chuwi_up(int duration){
-  send_ChuwiCommand(duration, code_up, sizeof(code_up) / sizeof(code_up[0]));
+  send_raw_command(duration, code_up, sizeof(code_up) / sizeof(code_up[0]));
 }
 
 void chuwi_down(int duration){
-  send_ChuwiCommand(duration, code_down, sizeof(code_down) / sizeof(code_down[0]));
+  send_raw_command(duration, code_down, sizeof(code_down) / sizeof(code_down[0]));
 }
 
 void chuwi_left(int duration){
-  send_ChuwiCommand(duration, code_left, sizeof(code_left) / sizeof(code_left[0]));
+  send_raw_command(duration, code_left, sizeof(code_left) / sizeof(code_left[0]));
 }
 
 void chuwi_right(int duration){
-  send_ChuwiCommand(duration, code_right, sizeof(code_right) / sizeof(code_right[0]));
+  send_raw_command(duration, code_right, sizeof(code_right) / sizeof(code_right[0]));
 }
 
 void chuwi_clock(int duration){
-  send_ChuwiCommand(duration, code_clock, sizeof(code_clock) / sizeof(code_clock[0]));
+  send_raw_command(duration, code_clock, sizeof(code_clock) / sizeof(code_clock[0]));
 }
 
 void chuwi_max(int duration){
-  send_ChuwiCommand(duration, code_max, sizeof(code_max) / sizeof(code_max[0]));
+  send_raw_command(duration, code_max, sizeof(code_max) / sizeof(code_max[0]));
 }
 
 void chuwi_edges(int duration){
-  send_ChuwiCommand(duration, code_edges, sizeof(code_edges) / sizeof(code_edges[0]));
+  send_raw_command(duration, code_edges, sizeof(code_edges) / sizeof(code_edges[0]));
 }
 
 // =========
