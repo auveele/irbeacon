@@ -4,8 +4,7 @@
 // BUTTON CODES
 // =============
 
-
-//TV codes
+// TV codes
 const unsigned int code_power = 0x4C;
 const unsigned int code_volUp = 0x850;
 const unsigned int code_volDwn = 0x51;

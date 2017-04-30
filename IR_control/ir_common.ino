@@ -3,7 +3,8 @@
 // =========
 // FUNCIÓN GENERAL SEGÚN PROTOCOLOS
 // =========
-// Enviamos una señal, con determinada duración en ms
+// Enviamos una señales, con determinada duración en ms
+
 void send_raw_command(int duration, unsigned int *code_to_send, int code_size){
   unsigned long actual_time = millis();
   while ((millis() - actual_time) < duration) {
