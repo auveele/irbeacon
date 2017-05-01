@@ -9,3 +9,4 @@ Proyecto todavía en desarrollo.
 
 ## Dependencias
 - Librería IRRemote de Arduino. https://github.com/z3t0/Arduino-IRremote
+- Librería IRRemoteESP8266. https://github.com/markszabo/IRremoteESP8266
