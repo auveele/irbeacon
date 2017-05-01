@@ -53,11 +53,35 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(comando);
   Serial.println();
  
- //Una vez interpretado el mensaje, pasamos la orden por IR
+ //Una vez interpretado el mensaje, pasamos la orden por IR a el periférico
   if ((comando == 'TV_POWER')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
     TV_power(150);
     Serial.println("POWER EN TV");
   }
+  if ((comando == 'TV_VOL_UP')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_volUp(150);
+    Serial.println("VOL+ EN TV");
+  }
+  if ((comando == 'TV_VOL_DWN')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_volDwn(150);
+    Serial.println("VOL- EN TV");
+  }  
+  if ((comando == 'TV_PRG_UP')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_prgUp(150);
+    Serial.println("PROG+ EN TV");
+  } 
+  if ((comando == 'TV_PRG_DWN')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_prgDwn(150);
+    Serial.println("PROG- EN TV");
+  }    
+  if ((comando == 'TV_MUTE')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_mute(150);
+    Serial.println("MUTE EN TV");
+  } 
+  if ((comando == 'TV_INFO')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+    TV_info(150);
+    Serial.println("INFO EN TV");
+  } 
 }
 //-------------------------------------------------------------------------------
 
