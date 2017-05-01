@@ -18,30 +18,30 @@ const unsigned int code_info = 0x852;
 // =========
 
 void TV_power(int duration){
-  send_rc5_command(duration, code_power, 12);
+  send_rc5_command(duration, code_power);
 }
 
 void TV_volUp(int duration){
-  send_rc5_command(duration, code_volUp, 12);
+  send_rc5_command(duration, code_volUp);
 }
 
 void TV_volDwn(int duration){
-  send_rc5_command(duration, code_volDwn, 12);
+  send_rc5_command(duration, code_volDwn);
 }
 
 void TV_prgUp(int duration){
-  send_rc5_command(duration, code_prgUp, 12);
+  send_rc5_command(duration, code_prgUp);
 }
 
 void TV_prgDwn(int duration){
-  send_rc5_command(duration, code_prgDwn, 12);
+  send_rc5_command(duration, code_prgDwn);
 }
 
 void TV_muter(int duration){
-  send_rc5_command(duration, code_mute, 12);
+  send_rc5_command(duration, code_mute);
 }
 
 void TV_info(int duration){
-  send_rc5_command(duration, code_info, 12);
+  send_rc5_command(duration, code_info);
 }
 
