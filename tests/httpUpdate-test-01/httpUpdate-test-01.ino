@@ -1,10 +1,3 @@
-/**
- * httpUpdate.ino
- *
- *  Created on: 27.11.2015
- *
- */
-
 #include <Arduino.h>
 
 #include <ESP8266WiFi.h>
@@ -16,6 +9,8 @@
 #define USE_SERIAL Serial
 
 ESP8266WiFiMulti WiFiMulti;
+
+long c_version = 1;
 
 void setup() {
 
