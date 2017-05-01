@@ -21,6 +21,9 @@ String mqtt_client_id = "ESP8266-"; //This text is concatenated with ChipId to g
 //MQTT Topic configuration
 String mqtt_base_topic = "/IR_Beacon/";
 
+// PINES
+const int IR_Pin = 2;
+
 // Perifericos
 #define TV_topic "TV"
 #define Chuwi_topic "CHUWI"
@@ -55,9 +58,15 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     TV_power(150);
     Serial.println("POWER EN TV");
   }
+}
 //-------------------------------------------------------------------------------
 
 //SETUPS
+void setup_pins() {
+  // Configuramos Pines
+  pinMode(IR_Pin, OUTPUT);
+}
+
 void setup_wifi() {
   delay(10);
   Serial.print("Conectando a ");
