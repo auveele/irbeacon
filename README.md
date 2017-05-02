@@ -15,4 +15,4 @@ Proyecto todavía en desarrollo.
 - [ ] Hacer todo no bloqueante. Sin delays.
 - [x] Separar MQTT en otro archivo.
 - [ ] Reparar movida String en la función callback.
-- [ ] Esquema del circuito.
+- [X] Esquema del circuito.
