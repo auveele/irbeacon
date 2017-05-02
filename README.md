@@ -10,3 +10,9 @@ Proyecto todavía en desarrollo.
 ## Dependencias
 - Librería IRRemote de Arduino. https://github.com/z3t0/Arduino-IRremote
 - Librería IRRemoteESP8266. https://github.com/markszabo/IRremoteESP8266
+
+## TODO List
+- [ ] Hacer todo no bloqueante. Sin delays.
+- [x] Separar MQTT en otro archivo.
+- [ ] Reparar movida String en la función callback.
+- [ ] Esquema del circuito.
