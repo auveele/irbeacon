@@ -37,7 +37,7 @@ void TV_prgDwn(int duration){
   send_rc5_command(duration, code_prgDwn);
 }
 
-void TV_muter(int duration){
+void TV_mute(int duration){
   send_rc5_command(duration, code_mute);
 }
 
