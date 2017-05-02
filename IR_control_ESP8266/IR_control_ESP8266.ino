@@ -2,6 +2,7 @@
 #include <IRremoteESP8266.h>    // For manage the IR transmission with the ESP
 #include <ESP8266WiFi.h>        // For ESP8266
 #include <PubSubClient.h>       // For MQTT
+
 /*
 #include <ESP8266mDNS.h>        // For OTA
 #include <WiFiUdp.h>            // For OTA
@@ -15,7 +16,9 @@ IRsend irsend(2);
 #define wifi_ssid "........"
 #define wifi_password "........"
 
-// MQTT configuration
+// ==========
+// MQTT CONFIG
+// ==========
 #define mqtt_server "192.168.1....."
 #define mqtt_user "....."
 #define mqtt_password "......"
@@ -24,9 +27,6 @@ String mqtt_client_id = "ESP8266-"; // This text is concatenated with ChipId to 
 
 // MQTT Topic configuration
 String mqtt_base_topic = "/IR_Beacon/";
-
-// PINES
-const int IR_Pin = 2;
 
 // Perifericos
 #define TV_topic "TV"
@@ -60,56 +60,17 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("comando = ");
   Serial.println(comando);
   Serial.println();
-<<<<<<< HEAD
- 
- //Una vez interpretado el mensaje, pasamos la orden por IR a el periférico
-=======
 
  //Una vez interpretado el mensaje, pasamos la orden por IR
->>>>>>> refs/remotes/origin/master
   if ((comando == 'TV_POWER')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
     TV_power(150);
     Serial.println("POWER EN TV");
   }
-  if ((comando == 'TV_VOL_UP')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_volUp(150);
-    Serial.println("VOL+ EN TV");
-  }
-  if ((comando == 'TV_VOL_DWN')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_volDwn(150);
-    Serial.println("VOL- EN TV");
-  }  
-  if ((comando == 'TV_PRG_UP')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_prgUp(150);
-    Serial.println("PROG+ EN TV");
-  } 
-  if ((comando == 'TV_PRG_DWN')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_prgDwn(150);
-    Serial.println("PROG- EN TV");
-  }    
-  if ((comando == 'TV_MUTE')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_mute(150);
-    Serial.println("MUTE EN TV");
-  } 
-  if ((comando == 'TV_INFO')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_info(150);
-    Serial.println("INFO EN TV");
-  } 
-}
 //-------------------------------------------------------------------------------
 
-<<<<<<< HEAD
-//SETUPS
-void setup_pins() {
-  // Configuramos Pines
-  pinMode(IR_Pin, OUTPUT);
-}
-
-=======
 // ==========
 // SETUP WIFI
 // ==========
->>>>>>> refs/remotes/origin/master
 void setup_wifi() {
   delay(10);
   Serial.print("Conectando a ");
