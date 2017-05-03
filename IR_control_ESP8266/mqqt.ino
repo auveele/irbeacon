@@ -73,20 +73,22 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.print(topic);
   Serial.print("] ");
   char comando = (char)payload[0];
+  String rutaTopic = "";
+
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
+    rutaTopic = rutaTopic + payload[i];
   }
-  String rutaTopic = String(topic);
-  String orden = String(comando);
+
   Serial.println();
   Serial.print("topic = ");
   Serial.println(topic);
   Serial.print("comando = ");
-  Serial.println(orden);
+  Serial.println(comando);
   Serial.println();
 
  //Una vez interpretado el mensaje, pasamos la orden por IR
-  if ((orden.equals("TV_POWER"))&&(rutaTopic.equals("/IR_Beacon/TV"))) {
+  if ((comando == 'TV_POWER')&&(rutaTopic.equals("/IR_Beacon/TV"))) {
     TV_power(150);
     Serial.println("POWER EN TV");
   }

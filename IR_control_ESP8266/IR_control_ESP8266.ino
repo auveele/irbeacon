@@ -11,15 +11,15 @@ IRsend irsend(2); // GPIO 2
 // ===========
 // WIFI CONFIG
 // ===========
-#define wifi_ssid "IOT"
-#define wifi_password "C4ch4rr30!"
+#define wifi_ssid "........"
+#define wifi_password "........"
 
 // ===========
 // MQTT CONFIG
 // ===========
-#define mqtt_server "192.168.1.131"
-#define mqtt_user "bas"
-#define mqtt_password "1234"
+#define mqtt_server "192.168.1....."
+#define mqtt_user "....."
+#define mqtt_password "......"
 String mqtt_client_id = "ESP8266-"; // This text is concatenated with ChipId to get unique client_id
 
 
@@ -34,6 +34,23 @@ String mqtt_base_topic = "/IR_Beacon/";
 WiFiClient espClient;
 PubSubClient mqtt_client(espClient);
 
+// ======================
+// NOTIFICACIÓN DE INICIO
+// =====================
+void led_notification() {
+  digitalWrite(IR_Pin, HIGH);
+  delay(200);
+  digitalWrite(IR_Pin, LOW);
+  delay(200);
+  digitalWrite(IR_Pin, HIGH);
+  delay(200);
+  digitalWrite(IR_Pin, LOW);
+  delay(200);
+  digitalWrite(IR_Pin, HIGH);
+  delay(200);
+  digitalWrite(IR_Pin, LOW);
+}
+
 // ===============
 // SETUP PRINCIPAL
 // ===============
@@ -41,10 +58,12 @@ void setup() {
   irsend.begin();
   Serial.begin(115200);
   Serial.println("\r\nIniciando...");
+  setup_pins();
   setup_wifi();
   // setup_ota();
   setup_mqtt();
   Serial.println("Setup completado! Iniciando modulo...");
+  led_notification();
 }
 
 // ==============
