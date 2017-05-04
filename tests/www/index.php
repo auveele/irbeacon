@@ -46,13 +46,16 @@ $db = array(
     "18:FE:AA:AA:AA:BB" => "TEMP-1.0.0"
 );
 
-if(isset($db[$_SERVER['HTTP_X_ESP8266_STA_MAC']])) {
-    // if($db[$_SERVER['HTTP_X_ESP8266_STA_MAC']] != $_SERVER['HTTP_X_ESP8266_VERSION']) ) {
-        // sendFile("./bin/".$db[$_SERVER['HTTP_X_ESP8266_STA_MAC']]."bin");
-    // } else {
+$mac = $_SERVER['HTTP_X_ESP8266_STA_MAC'];
+if ($mac != "") echo "La MAC del ESP es: $mac";
+
+if(isset($db[$mac])) {
+    if($db[$_SERVER['HTTP_X_ESP8266_STA_MAC']] != $_SERVER['HTTP_X_ESP8266_VERSION']) ) {  // DA ERROR AQUI
+        sendFile("./bin/".$db[$_SERVER['HTTP_X_ESP8266_STA_MAC']]."bin");
+    } else {
         header($_SERVER["SERVER_PROTOCOL"].' 304 Not Modified', true, 304);
-    // }
-    // exit();
+    }
+    exit();
 }
 
 /*
