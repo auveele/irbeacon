@@ -4,8 +4,8 @@
 // El archivo config.ino se ignorará al hacer un commit para no
 // publicar las credenciales.
 //
-// Ignorar manualmente el config_sample.ino al hacer el commit para que
-// no elimine el archivo actual de ejemplo.
+// Si este archivo es modificado,
+// eliminar del .ignore para que se sincronice.
 // ==========
 
 
