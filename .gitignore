@@ -2,3 +2,5 @@
 .remote-sync.json
 IR_control_ESP8266/config.ino
 IR_control_ESP8266/config_sample.ino
+
+IR_control_ESP8266/config_sample.ino

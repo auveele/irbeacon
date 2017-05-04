@@ -6,8 +6,8 @@
 void setup_wifi() {
   delay(10);
   Serial.print("Conectando a ");
-  Serial.print(wifi_ssid);
-  WiFi.begin(wifi_ssid, wifi_password);
+  Serial.print(WIFI_SSID);
+  WiFi.begin(WIFI_SSID, WIFI_PASS);
   while (WiFi.status() != WL_CONNECTED) {
     delay(500);
     Serial.print(".");
@@ -24,11 +24,11 @@ void setup_mqtt() {
   Serial.println("Configurando cliente MQTT...");
   mqtt_client_id = mqtt_client_id + ESP.getChipId();
   mqtt_base_topic = mqtt_base_topic + mqtt_client_id + "/";
-  mqtt_client.setServer(mqtt_server, 1883);
+  mqtt_client.setServer(MQTT_SERVER, 1883);
   mqtt_client.setCallback(mqtt_callback);
   mqtt_client.subscribe("/IR_Beacon/#");
-  Serial.printf("   Server IP: %s\r\n", mqtt_server);
-  Serial.printf("   Username:  %s\r\n", mqtt_user);
+  Serial.printf("   Server IP: %s\r\n", MQTT_SERVER);
+  Serial.printf("   Username:  %s\r\n", MQTT_USER);
   Serial.println("   Cliend Id: " + mqtt_client_id);
   Serial.println("   MQTT configurado!");
 }
@@ -43,7 +43,7 @@ void mqtt_reconnect() {
     // Attempt to connect
     // If you do not want to use a username and password, change next line to
     // if (client.connect("ESP8266Client")) {
-    if (mqtt_client.connect(mqtt_client_id.c_str(), mqtt_user, mqtt_password)) {
+    if (mqtt_client.connect(mqtt_client_id.c_str(), MQTT_USER, MQTT_PASS)) {
       Serial.println("conectado");
       mqtt_client.subscribe("/IR_BeaconN/#");
     } else {
@@ -90,5 +90,5 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     TV_power(150);
     Serial.println("POWER EN TV");
   }
-  
+
 }

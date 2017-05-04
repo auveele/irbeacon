@@ -12,15 +12,15 @@
 // ===========
 // WIFI CONFIG
 // ===========
-#define wifi_ssid "wifi_ssid"
-#define wifi_password "wifi_pass"
+#define WIFI_SSID "WIFI_SSID"
+#define WIFI_PASS "WIFI_PASS"
 
 // ===========
 // MQTT SERVER
 // ===========
-#define mqtt_server "mqtt_ip"
-#define mqtt_user "mqtt_user"
-#define mqtt_password "mqtt_pass"
+#define MQTT_SERVER "192.168.1.10"
+#define MQTT_USER "MQTT_USER"
+#define MQTT_PASS "MQTT_PASS"
 
 // ===========
 // MQTT CLIENT
