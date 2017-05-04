@@ -6,7 +6,8 @@
 // ==========
 // DECLARAMOS
 // ==========
-IRsend irsend(2); // GPIO 2
+#define PIN_IR 2
+IRsend irsend(PIN_IR); // GPIO 2
 
 // MQTT client
 WiFiClient espClient;
