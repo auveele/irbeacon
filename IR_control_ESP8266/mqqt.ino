@@ -89,8 +89,8 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.println();
 
  //Una vez interpretado el mensaje, pasamos la orden por IR
-  if ((mqtt_command.equals("TV_POWER"))&&(mqtt_topic.equals("/IR_Beacon/TV/"))) {
-    // TV_power(150);
+  if ((mqtt_command.equals("TV_POWER"))&&(mqtt_topic.equals("/IR_Beacon/TV"))) {
+    TV_power(150);
     Serial.println("POWER EN TV");
   }
 
