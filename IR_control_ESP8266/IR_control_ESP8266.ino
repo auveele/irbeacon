@@ -8,28 +8,6 @@
 // ==========
 IRsend irsend(2); // GPIO 2
 
-// ===========
-// WIFI CONFIG
-// ===========
-#define wifi_ssid "....."
-#define wifi_password "...."
-
-// ===========
-// MQTT CONFIG
-// ===========
-#define mqtt_server "192.168.1....."
-#define mqtt_user "..."
-#define mqtt_password "....."
-String mqtt_client_id = "ESP8266-"; // This text is concatenated with ChipId to get unique client_id
-
-
-// MQTT Topic configuration
-String mqtt_base_topic = "/IR_Beacon/";
-
-// Perifericos
-#define TV_topic "TV"
-#define Chuwi_topic "CHUWI"
-
 // MQTT client
 WiFiClient espClient;
 PubSubClient mqtt_client(espClient);
