@@ -45,7 +45,7 @@ void mqtt_reconnect() {
     // if (client.connect("ESP8266Client")) {
     if (mqtt_client.connect(mqtt_client_id.c_str(), MQTT_USER, MQTT_PASS)) {
       Serial.println("conectado");
-      mqtt_client.subscribe("/IR_BeaconN/#");
+      mqtt_client.subscribe("/IR_Beacon/#");
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt_client.state());
@@ -72,22 +72,25 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Recibo: [");
   Serial.print(topic);
   Serial.print("] ");
-  char comando = (char)payload[0];
+  
+  String mqtt_command = "";
+  String mqtt_topic = (char*)topic;
+  
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
+    mqtt_command = mqtt_command + (char)payload[i];
   }
-  String rutaTopic = String(topic);
-  String orden = String(comando);
+  
   Serial.println();
   Serial.print("topic = ");
-  Serial.println(topic);
+  Serial.println(mqtt_topic);
   Serial.print("comando = ");
-  Serial.println(orden);
+  Serial.println(mqtt_command);
   Serial.println();
 
  //Una vez interpretado el mensaje, pasamos la orden por IR
-  if ((orden.equals("TV_POWER"))&&(rutaTopic.equals("/IR_Beacon/TV"))) {
-    TV_power(150);
+  if ((mqtt_command.equals("TV_POWER"))&&(mqtt_topic.equals("/IR_Beacon/TV/"))) {
+    // TV_power(150);
     Serial.println("POWER EN TV");
   }
 
