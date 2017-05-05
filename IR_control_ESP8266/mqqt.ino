@@ -1,5 +1,4 @@
 
-
 // ==========
 // SETUP WIFI
 // ==========
@@ -23,7 +22,7 @@ void setup_wifi() {
 void setup_mqtt() {
   Serial.println("Configurando cliente MQTT...");
   mqtt_client_id = mqtt_client_id + ESP.getChipId();
-  mqtt_base_topic = mqtt_base_topic + mqtt_client_id + "/";
+  // mqtt_base_topic = mqtt_base_topic + mqtt_client_id + "/";
   mqtt_client.setServer(MQTT_SERVER, 1883);
   mqtt_client.setCallback(mqtt_callback);
   mqtt_client.subscribe("/IR_Beacon/#");
@@ -45,7 +44,7 @@ void mqtt_reconnect() {
     // if (client.connect("ESP8266Client")) {
     if (mqtt_client.connect(mqtt_client_id.c_str(), MQTT_USER, MQTT_PASS)) {
       Serial.println("conectado");
-      mqtt_client.subscribe("/IR_Beacon/#");
+      mqtt_client.subscribe(mqtt_base_topic.c_str());
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt_client.state());
