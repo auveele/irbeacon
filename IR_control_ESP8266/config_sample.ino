@@ -8,6 +8,7 @@
 // eliminar del .ignore para que se sincronice.
 // ==========
 
+// PENDIENTE DE ACTUALIZAR POR @auveele
 
 // ===========
 // WIFI CONFIG
