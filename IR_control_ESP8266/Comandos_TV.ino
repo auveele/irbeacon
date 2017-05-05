@@ -13,36 +13,36 @@ unsigned int code_prgDwn = 0x861;
 unsigned int code_mute = 0x4D;
 unsigned int code_info = 0x852;
 
-#define TV_DURARION 150
+#define TV_DURATION 150
 
 // =========
 // FUNCIONES DE CADA BOTÓN
 // =========
 
 void TV_power(){
-  send_rc5_command(TV_DURARION, code_power);
+  send_rc5_command(TV_DURATION, code_power);
 }
 
 void TV_volUp(){
-  send_rc5_command(TV_DURARION, code_volUp);
+  send_rc5_command(TV_DURATION, code_volUp);
 }
 
 void TV_volDwn(){
-  send_rc5_command(TV_DURARION, code_volDwn);
+  send_rc5_command(TV_DURATION, code_volDwn);
 }
 
 void TV_prgUp(){
-  send_rc5_command(TV_DURARION, code_prgUp);
+  send_rc5_command(TV_DURATION, code_prgUp);
 }
 
 void TV_prgDwn(){
-  send_rc5_command(TV_DURARION, code_prgDwn);
+  send_rc5_command(TV_DURATION, code_prgDwn);
 }
 
 void TV_mute(){
-  send_rc5_command(TV_DURARION, code_mute);
+  send_rc5_command(TV_DURATION, code_mute);
 }
 
 void TV_info(){
-  send_rc5_command(TV_DURARION, code_info);
+  send_rc5_command(TV_DURATION, code_info);
 }
