@@ -2,12 +2,16 @@
 #include <IRremoteESP8266.h>    // For manage the IR transmission with the ESP
 #include <ESP8266WiFi.h>        // For ESP8266
 #include <PubSubClient.h>       // For MQTT
+#include <Ticker.h>
+
+
 
 // ==========
 // DECLARAMOS
 // ==========
 #define PIN_IR 2
 IRsend irsend(PIN_IR); // GPIO 2
+Ticker flipper;
 
 // MQTT client
 WiFiClient espClient;

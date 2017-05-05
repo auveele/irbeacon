@@ -15,18 +15,29 @@ unsigned int code_clock[] = {4500, 4350, 550, 1600, 600, 500, 550, 1600, 600, 45
 unsigned int code_max[] = {4500, 4350, 550, 1600, 600, 500, 550, 1600, 600, 1550, 600, 1550, 600, 1600, 550, 1600, 550, 500, 4500, 4300, 600, 1600, 550, 550, 550, 1550, 600, 1600, 550, 1600, 600, 1550, 600, 1550, 600, 500, 4500, 4300, 600, 1550, 600, 500, 550, 1600, 600, 1550, 600, 1600, 550, 1600, 600, 1550, 600, 450, 4500, 4350, 550, 1600, 600, 500, 550, 1600, 550, 1600, 600, 1550, 600, 1600, 550, 1600, 550, 500, 4500, 4300, 600, 1600, 550, 550, 550, 1550, 600, 1600, 550, 1600, 600, 1550, 600, 1550, 600};
 unsigned int code_edges[] = {4500, 4350, 550, 1600, 600, 1550, 600, 500, 600, 1550, 550, 1600, 600, 1600, 550, 500, 600, 450, 4500, 4350, 550, 1600, 600, 1550, 600, 500, 550, 1600, 550, 1600, 600, 1550, 600, 500, 600, 450, 4500, 4350, 550, 1600, 600, 1550, 600, 500, 550, 1600, 600, 1550, 600, 1550, 600, 500, 550, 500, 4500, 4350, 550, 1600, 550, 1600, 600, 500, 550, 1600, 550, 1600, 600, 1550, 600, 500, 550, 500, 4500, 4300, 600, 1600, 550, 1600, 600, 500, 550, 1600, 550, 1600, 600, 1550, 600, 500, 550};
 
-
 // =========
 // VARIABLES
 // =========
 int khz = 38;
 int sender_delay = 40;   // Respiro entre pulsaciones
-int end_delay = 2000;    // Respiro final al enviar la instrucción
+// int end_delay = 2000;    // Respiro final al enviar la instrucción
+int ir_pulse_count = 0;
+int ir_pulse_n = 0;
 
 // =========
 // FUNCIONES DE CADA BOTÓN
 // =========
 void chuwi_clean(int duration){
+
+  ++ir_pulse_count;
+  ir_pulse_n = (duration / sender_delay);
+  if (ir_pulse_count < ir_pulse_n ) {
+    flipper.attach(sender_delay, chuwi_clean, duration);
+  } else {
+    ir_pulse_count = 0;
+    flipper.detach();
+  }
+  
   send_raw_command(duration, code_clean, sizeof(code_clean) / sizeof(code_clean[0]));
 }
 
