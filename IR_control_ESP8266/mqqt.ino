@@ -90,7 +90,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   // ==========
   // CONTROL TV
   // ==========
-  if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV") {
+  if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV")) {
     if (mqtt_command.equals("TV_POWER")) {
       TV_power();
     } else if (mqtt_command.equals("TV_VOL_UP")) {
@@ -112,7 +112,7 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   // =============
   // CONTROL CHUWI
   // =============
-  if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI") {
+  if (mqtt_topic.equals("/BROKER_CASA/TEST/IR_BEACON/CHUWI")) {
     if (mqtt_command.equals("CHUWI_CLEAN")) {
       chuwi_clean(150);
     } else if (mqtt_command.equals("CHUWI_HOME")) {
