@@ -14,5 +14,5 @@ Proyecto todavía en desarrollo.
 ## TODO List
 - [ ] Hacer todo no bloqueante. Sin delays.
 - [x] Separar MQTT en otro archivo.
-- [ ] Reparar movida String en la función callback.
+- [x] Reparar movida String en la función callback.
 - [x] Esquema del circuito.

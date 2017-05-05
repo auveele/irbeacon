@@ -5,10 +5,9 @@
 // publicar las credenciales.
 //
 // Si este archivo es modificado,
-// eliminar del .ignore para que se sincronice.
+// eliminar del .gitignore para que se sincronice.
 // ==========
 
-// PENDIENTE DE ACTUALIZAR POR @auveele
 
 // ===========
 // WIFI CONFIG
@@ -19,15 +18,24 @@
 // ===========
 // MQTT SERVER
 // ===========
-#define MQTT_SERVER "192.168.1.10"
+#define MQTT_SERVER "MQTT_SERVER"
 #define MQTT_USER "MQTT_USER"
 #define MQTT_PASS "MQTT_PASS"
 
 // ===========
 // MQTT CLIENT
 // ===========
+
+String mqtt_slash = "/";
+String mqtt_scope = "DOMUS";
+String mqtt_room = "TEST";
+String mqtt_device = "IR_BEACON";
+String mqtt_base_topic = mqtt_slash + mqtt_scope + mqtt_slash + mqtt_room + mqtt_slash + mqtt_device + mqtt_slash + "#";
+
+// Creo que esto no se usa.
+// Darle uso o ventilarselo
 String mqtt_client_id = "ESP8266-";         // This text is concatenated with ChipId to get unique client_id
-String mqtt_base_topic = "/IR_Beacon/";     // MQTT Topic configuration
+
 
 // Perifericos
 #define TV_topic "TV"
