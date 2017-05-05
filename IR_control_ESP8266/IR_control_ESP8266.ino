@@ -30,5 +30,5 @@ void setup() {
 // LOOP PRINCIPAL
 // ==============
 void loop() {
-  loop_mqtt();  
+  loop_mqtt();
 }

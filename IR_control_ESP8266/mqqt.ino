@@ -1,5 +1,4 @@
 
-
 // ==========
 // SETUP WIFI
 // ==========
@@ -23,7 +22,7 @@ void setup_wifi() {
 void setup_mqtt() {
   Serial.println("Configurando cliente MQTT...");
   mqtt_client_id = mqtt_client_id + ESP.getChipId();
-  mqtt_base_topic = mqtt_base_topic + mqtt_client_id + "/";
+  // mqtt_base_topic = mqtt_base_topic + mqtt_client_id + "/";
   mqtt_client.setServer(MQTT_SERVER, 1883);
   mqtt_client.setCallback(mqtt_callback);
   mqtt_client.subscribe("/BROKER_CASA/SALON/IR_BEACON/#");
@@ -37,20 +36,18 @@ void setup_mqtt() {
 // MQTT RECONNECT
 // ==============
 void mqtt_reconnect() {
-  // Loop until we're reconnected
+  // Loop hasta que reconecte
   while (!mqtt_client.connected()) {
     Serial.print("Intentando conexion MQTT...");
-    // Attempt to connect
-    // If you do not want to use a username and password, change next line to
-    // if (client.connect("ESP8266Client")) {
+    // Intentamos conexión con user y pass
     if (mqtt_client.connect(mqtt_client_id.c_str(), MQTT_USER, MQTT_PASS)) {
-      Serial.println("conectado");
-      mqtt_client.subscribe("/BROKER_CASA/SALON/IR_BEACON/#");
+      Serial.println("Conectado!");
+      mqtt_client.subscribe(mqtt_base_topic.c_str());
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt_client.state());
-      Serial.println(" nuevo intento en 5 segundos");
-      // Wait 5 seconds before retrying
+      Serial.println(" nuevo intento en 5 segundos...");
+      // Esperamos 5 segundos para reintento
       delay(5000);
     }
   }
@@ -61,7 +58,9 @@ void mqtt_reconnect() {
 // =========
 void loop_mqtt(){
   // Comprobar conexión de MQTT o reconectar
-  if (!mqtt_client.connected()) { mqtt_reconnect(); }
+  if (!mqtt_client.connected()) {
+    mqtt_reconnect();
+  }
   mqtt_client.loop();
 }
 
@@ -72,15 +71,15 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.print("Recibo: [");
   Serial.print(topic);
   Serial.print("] ");
-  
+
   String mqtt_command = "";
   String mqtt_topic = (char*)topic;
-  
+
   for (int i = 0; i < length; i++) {
     Serial.print((char)payload[i]);
     mqtt_command = mqtt_command + (char)payload[i];
   }
-  
+
   Serial.println();
   Serial.print("topic = ");
   Serial.println(mqtt_topic);
@@ -88,90 +87,51 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(mqtt_command);
   Serial.println();
 
- //Una vez interpretado el mensaje, pasamos la orden por IR
- //==========
- //CONTROL TV
- //==========
-  if ((mqtt_command.equals("TV_POWER"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_power(150);
-    Serial.println("POWER EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_VOL_UP"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_volUp(150);
-    Serial.println("VOL+ EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_VOL_DWN"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_volDwn(150);
-    Serial.println("VOL- EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_PRG_UP"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_prgUp(150);
-    Serial.println("PROG+ EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_PRG_DWN"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_prgDwn(150);
-    Serial.println("PROG- EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_MUTE"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_mute(150);
-    Serial.println("MUTE EN TV");
-  }
-  
-  if ((mqtt_command.equals("TV_INFO"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV"))) {
-    TV_info(150);
-    Serial.println("INFO EN TV");
+  // ==========
+  // CONTROL TV
+  // ==========
+  if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV") {
+    if (mqtt_command.equals("TV_POWER")) {
+      TV_power();
+    } else if (mqtt_command.equals("TV_VOL_UP")) {
+      TV_volUp();
+    } else if (mqtt_command.equals("TV_VOL_DWN")) {
+      TV_volDwn();
+    } else if (mqtt_command.equals("TV_PRG_UP")) {
+      TV_prgUp();
+    } else if (mqtt_command.equals("TV_PRG_DWN")) {
+      TV_prgDwn();
+    } else if (mqtt_command.equals("TV_MUTE")) {
+      TV_mute();
+    } else if (mqtt_command.equals("TV_INFO")) {
+      TV_info();
+    }
+    Serial.println(mqtt_command);
   }
 
-  //============
-  //CONTROL CHUWI
-  //============
- if ((mqtt_command.equals("CHUWI_CLEAN"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_clean(150);
-    Serial.println("CLEAN EN CHUWI");
-  }
-
- if ((mqtt_command.equals("CHUWI_HOME"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_home(150);
-    Serial.println("HOME EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_UP"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_up(150);
-    Serial.println("UP EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_DOWN"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_down(150);
-    Serial.println("DOWN EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_LEFT"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_left(150);
-    Serial.println("LEFT EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_RIGHT"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_right(150);
-    Serial.println("RIGHT EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_CLOCK"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_clock(150);
-    Serial.println("CLOCK EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_MAX"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_max(150);
-    Serial.println("MAX EN CHUWI");
-  }
-  
- if ((mqtt_command.equals("CHUWI_EDGES"))&&(mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI"))) {
-    chuwi_edges(150);
-    Serial.println("EDGES EN CHUWI");
+  // =============
+  // CONTROL CHUWI
+  // =============
+  if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI") {
+    if (mqtt_command.equals("CHUWI_CLEAN")) {
+      chuwi_clean(150);
+    } else if (mqtt_command.equals("CHUWI_HOME")) {
+      chuwi_home(150);
+    } else if (mqtt_command.equals("CHUWI_UP")) {
+      chuwi_up(150);
+    } else if (mqtt_command.equals("CHUWI_DOWN")) {
+      chuwi_down(150);
+    } else if (mqtt_command.equals("CHUWI_LEFT")) {
+      chuwi_left(150);
+    } else if (mqtt_command.equals("CHUWI_RIGHT")) {
+      chuwi_right(150);
+    } else if (mqtt_command.equals("CHUWI_CLOCK")) {
+      chuwi_clock(150);
+    } else if (mqtt_command.equals("CHUWI_MAX")) {
+      chuwi_max(150);
+    } else if (mqtt_command.equals("CHUWI_EDGES")) {
+      chuwi_edges(150);
+    }
+    Serial.println(mqtt_command);
   }
 }
