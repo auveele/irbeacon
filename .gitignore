@@ -1,18 +1,5 @@
 
 .remote-sync.json
-IR_control_ESP8266/config.ino
-# así lo dejamos actualizado en el git. Luego volvemos a ignorarlo.
-
-.remote-sync.json
-IR_control_ESP8266/config.ino
-
-# Si modificamos el config_sample.ino, comantamos esta linea
-# así lo dejamos actualizado en el git. Luego volvemos a ignorarlo.
-IR_control_ESP8266/config_sample.ino
-
-.remote-sync.json
-
-
 
 # Si modificamos el config_sample.ino, comantamos la linea del config_sample
 # así lo dejamos actualizado en el git. Luego volvemos a ignorarlo.
