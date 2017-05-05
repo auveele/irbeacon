@@ -5,13 +5,13 @@
 // =============
 
 // TV codes
-const unsigned int code_power = 0x4C;
-const unsigned int code_volUp = 0x850;
-const unsigned int code_volDwn = 0x51;
-const unsigned int code_prgUp = 0x60;
-const unsigned int code_prgDwn = 0x861;
-const unsigned int code_mute = 0x4D;
-const unsigned int code_info = 0x852;
+unsigned int code_power = 0x4C;
+unsigned int code_volUp = 0x850;
+unsigned int code_volDwn = 0x51;
+unsigned int code_prgUp = 0x60;
+unsigned int code_prgDwn = 0x861;
+unsigned int code_mute = 0x4D;
+unsigned int code_info = 0x852;
 
 // =========
 // FUNCIONES DE CADA BOTÓN
