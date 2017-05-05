@@ -3,8 +3,6 @@
 #include <ESP8266WiFi.h>        // For ESP8266
 #include <PubSubClient.h>       // For MQTT
 
-// TEST
-
 // ==========
 // DECLARAMOS
 // ==========
@@ -32,5 +30,5 @@ void setup() {
 // LOOP PRINCIPAL
 // ==============
 void loop() {
-  loop_mqtt();  
+  loop_mqtt();
 }

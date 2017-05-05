@@ -36,20 +36,18 @@ void setup_mqtt() {
 // MQTT RECONNECT
 // ==============
 void mqtt_reconnect() {
-  // Loop until we're reconnected
+  // Loop hasta que reconecte
   while (!mqtt_client.connected()) {
     Serial.print("Intentando conexion MQTT...");
-    // Attempt to connect
-    // If you do not want to use a username and password, change next line to
-    // if (client.connect("ESP8266Client")) {
+    // Intentamos conexión con user y pass
     if (mqtt_client.connect(mqtt_client_id.c_str(), MQTT_USER, MQTT_PASS)) {
-      Serial.println("conectado");
+      Serial.println("Conectado!");
       mqtt_client.subscribe(mqtt_base_topic.c_str());
     } else {
       Serial.print("failed, rc=");
       Serial.print(mqtt_client.state());
-      Serial.println(" nuevo intento en 5 segundos");
-      // Wait 5 seconds before retrying
+      Serial.println(" nuevo intento en 5 segundos...");
+      // Esperamos 5 segundos para reintento
       delay(5000);
     }
   }
@@ -60,7 +58,9 @@ void mqtt_reconnect() {
 // =========
 void loop_mqtt(){
   // Comprobar conexión de MQTT o reconectar
-  if (!mqtt_client.connected()) { mqtt_reconnect(); }
+  if (!mqtt_client.connected()) {
+    mqtt_reconnect();
+  }
   mqtt_client.loop();
 }
 
@@ -87,12 +87,9 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
   Serial.println(mqtt_command);
   Serial.println();
 
-// Una vez interpretado el mensaje, pasamos la orden por IR
-
-
-// ==========
-// CONTROL TV
-// ==========
+  // ==========
+  // CONTROL TV
+  // ==========
   if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/TV") {
     if (mqtt_command.equals("TV_POWER")) {
       TV_power();
@@ -112,9 +109,9 @@ void mqtt_callback(char* topic, byte* payload, unsigned int length) {
     Serial.println(mqtt_command);
   }
 
-// =============
-// CONTROL CHUWI
-// =============
+  // =============
+  // CONTROL CHUWI
+  // =============
   if (mqtt_topic.equals("/BROKER_CASA/SALON/IR_BEACON/CHUWI") {
     if (mqtt_command.equals("CHUWI_CLEAN")) {
       chuwi_clean(150);
