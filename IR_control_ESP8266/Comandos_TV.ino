@@ -20,85 +20,36 @@ unsigned int code_info = 0x852;
 // =========
 
 void TV_power(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_power);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_power);
+  ir_attacher(&TV_power, TV_DURATION);
+  send_rc5_command(code_power);
 }
 
 void TV_volUp(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_volUp);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_volUp);
+  ir_attacher(&TV_volUp, TV_DURATION);
+  send_rc5_command(code_volUp);
 }
 
 void TV_volDwn(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_volDwn);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_volDwn);
+  ir_attacher(&TV_volDwn, TV_DURATION);
+  send_rc5_command(code_volDwn);
 }
 
 void TV_prgUp(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_prgUp);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_prgUp);
+  ir_attacher(&TV_prgUp, TV_DURATION);
+  send_rc5_command(code_prgUp);
 }
 
 void TV_prgDwn(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_prgDwn);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_prgDwn);
+  ir_attacher(&TV_prgDwn, TV_DURATION);
+  send_rc5_command(code_prgDwn);
 }
 
 void TV_mute(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_mute);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_mute);
+  ir_attacher(&TV_mute, TV_DURATION);
+  send_rc5_command(code_mute);
 }
 
 void TV_info(){
-  ++ir_pulse_count;
-  ir_pulse_n = (TV_DURATION / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, TV_info);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  send_rc5_command(TV_DURATION, code_info);
+  ir_attacher(&TV_info, TV_DURATION);
+  send_rc5_command(code_info);
 }

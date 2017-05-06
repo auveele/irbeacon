@@ -28,49 +28,48 @@ int ir_pulse_n = 0;
 // FUNCIONES DE CADA BOTÓN
 // =========
 void chuwi_clean(int duration){
-
-  ++ir_pulse_count;
-  ir_pulse_n = (duration / sender_delay);
-  if (ir_pulse_count < ir_pulse_n ) {
-    flipper.attach(sender_delay, chuwi_clean, duration);
-  } else {
-    ir_pulse_count = 0;
-    flipper.detach();
-  }
-  
-  send_raw_command(duration, code_clean, sizeof(code_clean) / sizeof(code_clean[0]));
+  ir_attacher_ms(&chuwi_clean, duration);
+  send_raw_command(code_clean, sizeof(code_clean) / sizeof(code_clean[0]));
 }
 
 void chuwi_home(int duration){
-  send_raw_command(duration, code_home, sizeof(code_home) / sizeof(code_home[0]));
+  ir_attacher_ms(&chuwi_home, duration);
+  send_raw_command(code_home, sizeof(code_home) / sizeof(code_home[0]));
 }
 
 void chuwi_up(int duration){
-  send_raw_command(duration, code_up, sizeof(code_up) / sizeof(code_up[0]));
+  ir_attacher_ms(&chuwi_up, duration);
+  send_raw_command(code_up, sizeof(code_up) / sizeof(code_up[0]));
 }
 
 void chuwi_down(int duration){
-  send_raw_command(duration, code_down, sizeof(code_down) / sizeof(code_down[0]));
+  ir_attacher_ms(&chuwi_down, duration);
+  send_raw_command(code_down, sizeof(code_down) / sizeof(code_down[0]));
 }
 
 void chuwi_left(int duration){
-  send_raw_command(duration, code_left, sizeof(code_left) / sizeof(code_left[0]));
+  ir_attacher_ms(&chuwi_left, duration);
+  send_raw_command(code_left, sizeof(code_left) / sizeof(code_left[0]));
 }
 
 void chuwi_right(int duration){
-  send_raw_command(duration, code_right, sizeof(code_right) / sizeof(code_right[0]));
+  ir_attacher_ms(&chuwi_right, duration);
+  send_raw_command(code_right, sizeof(code_right) / sizeof(code_right[0]));
 }
 
 void chuwi_clock(int duration){
-  send_raw_command(duration, code_clock, sizeof(code_clock) / sizeof(code_clock[0]));
+  ir_attacher_ms(&chuwi_clock, duration);
+  send_raw_command(code_clock, sizeof(code_clock) / sizeof(code_clock[0]));
 }
 
 void chuwi_max(int duration){
-  send_raw_command(duration, code_max, sizeof(code_max) / sizeof(code_max[0]));
+  ir_attacher_ms(&chuwi_max, duration);
+  send_raw_command(code_max, sizeof(code_max) / sizeof(code_max[0]));
 }
 
 void chuwi_edges(int duration){
-  send_raw_command(duration, code_edges, sizeof(code_edges) / sizeof(code_edges[0]));
+  ir_attacher_ms(&chuwi_edges, duration);
+  send_raw_command(code_edges, sizeof(code_edges) / sizeof(code_edges[0]));
 }
 
 // =========

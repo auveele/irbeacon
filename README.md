@@ -12,7 +12,7 @@ Proyecto todavía en desarrollo.
 - Librería IRRemoteESP8266. https://github.com/markszabo/IRremoteESP8266
 
 ## TODO List
-- [ ] Hacer todo no bloqueante. Sin delays.
+- [x] Hacer todo no bloqueante. Sin delays.
 - [x] Separar MQTT en otro archivo.
 - [x] Reparar movida String en la función callback.
 - [x] Esquema del circuito.
