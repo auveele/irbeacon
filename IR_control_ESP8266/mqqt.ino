@@ -1,4 +1,3 @@
-
 // ==========
 // SETUP WIFI
 // ==========
@@ -16,6 +15,7 @@ void setup_wifi() {
   Serial.println(WiFi.localIP());
 }
 
+
 // ==========
 // SETUP MQTT
 // ==========
@@ -30,6 +30,19 @@ void setup_mqtt() {
   Serial.printf("   Username:  %s\r\n", MQTT_USER);
   Serial.println("   Cliend Id: " + mqtt_client_id);
   Serial.println("   MQTT configurado!");
+}
+//==================================
+//NOTIFICACIÓN DE CONEXIÓN CON ÉXITO
+//==================================
+void led_notification() {
+  digitalWrite(PIN_NOTIFY, HIGH);
+  delay(200);
+  digitalWrite(PIN_NOTIFY, LOW);
+  delay(200);
+  digitalWrite(PIN_NOTIFY, HIGH);
+  delay(200);
+  digitalWrite(PIN_NOTIFY, LOW);
+  delay(200);
 }
 
 // ==============
