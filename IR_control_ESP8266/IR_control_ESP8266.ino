@@ -2,7 +2,7 @@
 #include <IRremoteESP8266.h>    // For manage the IR transmission with the ESP
 #include <ESP8266WiFi.h>        // For ESP8266
 #include <PubSubClient.h>       // For MQTT
-#include <Ticker.h>
+#include <Ticker.h>             // For avoid blockin functions
 
 
 
